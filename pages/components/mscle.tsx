@@ -4,29 +4,6 @@ import Helmet from "react-helmet";
 import styles from "./mscle.module.css";
 const fetch = require('cross-fetch');
 
-const [word, setWord] = useState("");
-const [muscle] = useState("");
-const [words, setWords] = useState<string[]>();
-
-const url = `https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises?muscle=${muscle}`;
-
-const handleData = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setWord(event.target.value);
-};
-
-const handleSubmit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-
-    try {
-        const response = await fetch(url)
-        const data = await response.json();
-
-        setWords(data?.name);
-    } catch(error) {
-
-    }
-}
-
 const options = {
     method: 'GET',
     headers: {
@@ -34,17 +11,6 @@ const options = {
         'X-RapidAPI-Host': 'exercises-by-api-ninjas.p.rapidapi.com'
     }
 };
-
-async function getExercises() {
-    const response = await fetch(url, options);
-    const data = await response.json();
-    const random = Math.floor(Math.random() * data.length);
-
-    console.log(data[random].name);
-    console.log(" ----------- ");
-    console.log(data[random].difficulty);
-}
-
 
 // https://api-ninjas.com/api/exercises
 
@@ -55,6 +21,29 @@ async function getExercises() {
 // - button to delete the current excersice (states, take example from old project)
 
 function Mscle() {
+    const [word, setWord] = useState("");
+    const [muscle] = useState("");
+    const [words, setWords] = useState<string[]>();
+
+    const url = `https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises?muscle=${muscle}`;
+
+    const handleData = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setWord(event.target.value);
+    };
+
+    const handleSubmit = async (e: React.SyntheticEvent) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch(url)
+            const data = await response.json();
+
+            setWords(data?.name);
+        } catch (error) {
+
+        }
+    }
+
     return (
         <><div>
             <form onSubmit={handleSubmit}>
