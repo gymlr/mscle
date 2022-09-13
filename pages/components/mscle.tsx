@@ -25,6 +25,14 @@ function Mscle() {
     const [muscle] = useState("");
     const [words, setWords] = useState<string[]>();
 
+    const options = {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': '',
+          'X-RapidAPI-Host': ''
+        }
+      };
+
     const url = `https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises?muscle=${muscle}`;
 
     const handleData = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +43,7 @@ function Mscle() {
         e.preventDefault();
 
         try {
-            const response = await fetch(url)
+            const response = await fetch(url, options)
             const data = await response.json();
 
             setWords(data?.name);
@@ -47,7 +55,7 @@ function Mscle() {
     return (
         <><div>
             <form onSubmit={handleSubmit}>
-                <input className={styles.input}
+                <input
                     type="text"
                     id="message"
                     name="message"
