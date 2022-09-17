@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Helmet from "react-helmet";
 
-import styles from "./mscle.module.css";
+//import styles from "./mscle.module.css";
 const fetch = require('cross-fetch');
+import { ArrowRightIcon } from '@heroicons/react/24/solid'
 
 const options = {
     method: 'GET',
@@ -53,15 +54,28 @@ function Mscle() {
     }
 
     return (
-        <><div>
+        <><div className="flex flex-col justify-center h-screen items-center bg-backgroundColor" >
             <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    id="message"
-                    name="message"
-                    onChange={handleData}
-                    value={word}>
-                </input>
+                <div className="container h-screen flex justify-center items-center">
+                    <div className="relative">
+                        <div className="absolute top-4 left-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                            </svg>
+
+                        </div>
+                        <input type="text"
+                               className="h-14 w-96 pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none"
+                               placeholder="Search Mscle..." />
+                            <div className="absolute top-2 right-2">
+
+                                <button className="h-10 w-20 text-buttonText rounded-lg bg-button focus:ring-4 shadow-lg transform active:scale-y-75 transition-transform hover:animate-pulse">
+                                    Go
+                                </button>
+
+                            </div>
+                    </div>
+                </div>
             </form>
         </div>
             <div>
